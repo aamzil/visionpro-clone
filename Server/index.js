@@ -7,14 +7,22 @@ const app = express();
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = Stripe(stripeSecretKey);
 
-app.use(
-  cors({
-    origin: ["https://applestoreclone.vercel.app"],
-  })
-);
 app.use(express.json());
 
-app.post("/create-payment", async (req, res) => {
+export default async (req, res) => {
+  // Allow CORS for the frontend domain
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://applestoreclone.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    // Preflight request (browser checks if it’s allowed to proceed)
+    return res.status(200).end();
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -40,4 +48,4 @@ app.post("/create-payment", async (req, res) => {
     console.error("Error creating payment intent:", error.message, error.stack);
     res.status(500).json({ error: "Internal Server Error" });
   }
-});
+};
