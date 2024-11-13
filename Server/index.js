@@ -2,10 +2,16 @@ const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors");
 require("dotenv").config();
+
 const app = express();
-const stripeSecretKey = process.env.REACT_SECRET_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = Stripe(stripeSecretKey);
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://applestoreclone.vercel.app",
+  })
+);
 app.use(express.json());
 
 app.post("/create-payment", async (req, res) => {
@@ -25,8 +31,8 @@ app.post("/create-payment", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: "https://applestoreclone.vercel.app/success",
+      cancel_url: "https://applestoreclone.vercel.app/cancel",
     });
 
     res.json({ url: session.url });

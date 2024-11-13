@@ -34,6 +34,8 @@ function Shop() {
 
   const basePrice = 349900;
   const appleCarePrice = 49900;
+  const backendUrl =
+    import.meta.env.VITE_BACKEND_URL || "http://localhost:4242";
 
   const totalPrice =
     (selectedStorage
@@ -46,7 +48,7 @@ function Shop() {
     } else {
       setIsLoading(true);
       try {
-        const response = await fetch("http://localhost:4242/create-payment", {
+        const response = await fetch(`${backendUrl}/create-payment`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ amount: totalPrice }),
