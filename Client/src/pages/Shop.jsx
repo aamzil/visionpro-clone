@@ -42,6 +42,7 @@ function Shop() {
       : basePrice) + (isAppleCareSelected ? appleCarePrice : 0);
 
   const handleProceedToPayment = async () => {
+    console.log("first", backendUrl);
     if (selectedStorage === null) {
       setMessage("Please select a storage option.");
     } else {

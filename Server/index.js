@@ -9,7 +9,9 @@ const stripe = Stripe(stripeSecretKey);
 
 app.use(
   cors({
-    origin: "https://applestoreclone.vercel.app",
+    origin: ["https://applestoreclone.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true,
   })
 );
 app.use(express.json());
