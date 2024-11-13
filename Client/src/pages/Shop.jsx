@@ -49,7 +49,7 @@ function Shop() {
     } else {
       setIsLoading(true);
       try {
-        const response = await fetch(`${backendUrl}/create-payment`, {
+        const response = await fetch(`https://visionpro-clone-server.vercel.app/create-payment`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ amount: totalPrice }),
