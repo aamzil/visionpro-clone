@@ -34,8 +34,7 @@ function Shop() {
 
   const basePrice = 349900;
   const appleCarePrice = 49900;
-  const backendUrl =
-    import.meta.env.VITE_BACKEND_URL || "http://localhost:4242";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const totalPrice =
     (selectedStorage
