@@ -44,30 +44,30 @@ function Shop() {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     console.log("first", backendUrl);
-    // if (selectedStorage === null) {
-    //   setMessage("Please select a storage option.");
-    // } else {
-    //   setIsLoading(true);
-    //   try {
-    //     const response = await fetch(`${backendUrl}/create-payment`, {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify({ amount: totalPrice }),
-    //     });
+    if (selectedStorage === null) {
+      setMessage("Please select a storage option.");
+    } else {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${backendUrl}/create-payment`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: totalPrice }),
+        });
 
-    //     if (!response.ok) {
-    //       throw new Error("Failed to create payment intent");
-    //     }
+        if (!response.ok) {
+          throw new Error("Failed to create payment intent");
+        }
 
-    //     const data = await response.json();
-    //     window.location.href = data.url;
-    //   } catch (error) {
-    //     console.error("Error creating payment intent:", error);
-    //     alert("An error occurred. Please try again later.");
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // }
+        const data = await response.json();
+        window.location.href = data.url;
+      } catch (error) {
+        console.error("Error creating payment intent:", error);
+        alert("An error occurred. Please try again later.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
   return (
