@@ -41,5 +41,3 @@ app.post("/create-payment", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-app.listen(4242, () => console.log("Server running on http://localhost:4242"));
