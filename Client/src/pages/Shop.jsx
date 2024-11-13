@@ -34,7 +34,6 @@ function Shop() {
 
   const basePrice = 349900;
   const appleCarePrice = 49900;
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const totalPrice =
     (selectedStorage
@@ -42,6 +41,8 @@ function Shop() {
       : basePrice) + (isAppleCareSelected ? appleCarePrice : 0);
 
   const handleProceedToPayment = async () => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
     console.log("first", backendUrl);
     // if (selectedStorage === null) {
     //   setMessage("Please select a storage option.");
