@@ -49,11 +49,14 @@ function Shop() {
     } else {
       setIsLoading(true);
       try {
-        const response = await fetch(`${backendUrl}/create-payment`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: totalPrice }),
-        });
+        const response = await fetch(
+          `https://visionpro-clone-server.vercel.app/create-payment`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: totalPrice }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to create payment intent");
