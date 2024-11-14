@@ -46,7 +46,7 @@ function Shop() {
     } else {
       setIsLoading(true);
       try {
-        const response = await fetch("https://visionpro-clone-server-7carq2kmk-aamzils-projects.vercel.app/create-payment", {
+        const response = await fetch("https://visionpro-clone-server.vercel.app/create-payment", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
