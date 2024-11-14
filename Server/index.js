@@ -4,8 +4,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const stripe = Stripe("sk_test_51QF5lBF0xgJVFx6Ke3hb9RuyUL4HHZuiRuU5pNHTc0ltVoRapz84sdW8hv3Sd64Tb29ufmKTxudQ8ha0B42DHeYH00QTN5hXf7");
-
+const stripeSecretKey = process.env.REACT_SECRET_KEY;
+const stripe = Stripe(stripeSecretKey);
 app.use(
   cors({
     origin: ["https://applestoreclone.vercel.app"],
